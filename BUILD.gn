@@ -1,0 +1,61 @@
+config("jsc-config") {
+  include_dirs = [ "./include" ]
+
+  if (is_android) {
+    import("//build/config/android/config.gni")
+    jsc_ld_path = rebase_path("//third_party/android-jsc/lib/") + android_app_abi
+    lib_dirs = [ jsc_ld_path ]
+    libs = [ "jsc" ]
+  }
+}
+
+source_set("android-jsc") {
+  public_configs = [ ":jsc-config" ]
+
+  sources = [
+    "APICallbackFunction.h",
+    "APICast.h",
+    "JSAPIWrapperObject.h",
+    "JSBase.h",
+    "JSBasePrivate.h",
+    "JSCTestRunnerUtils.h",
+    "JSCallbackConstructor.h",
+    "JSCallbackFunction.h",
+    "JSCallbackObject.h",
+    "JSCallbackObjectFunctions.h",
+    "JSClassRef.h",
+    "JSContext.h",
+    "JSContextInternal.h",
+    "JSContextPrivate.h",
+    "JSContextRef.h",
+    "JSContextRefInternal.h",
+    "JSContextRefPrivate.h",
+    "JSExport.h",
+    "JSManagedValue.h",
+    "JSManagedValueInternal.h",
+    "JSObjectRef.h",
+    "JSObjectRefPrivate.h",
+    "JSProfilerPrivate.h",
+    "JSRetainPtr.h",
+    "JSScriptRefPrivate.h",
+    "JSStringRef.h",
+    "JSStringRefBSTR.h",
+    "JSStringRefCF.h",
+    "JSStringRefPrivate.h",
+    "JSValue.h",
+    "JSValueInternal.h",
+    "JSValueRef.h",
+    "JSVirtualMachine.h",
+    "JSVirtualMachineInternal.h",
+    "JSWeakObjectMapRefInternal.h",
+    "JSWeakObjectMapRefPrivate.h",
+    "JSWrapperMap.h",
+    "JavaScript.h",
+    "JavaScriptCore.h",
+    "ObjCCallbackFunction.h",
+    "ObjcRuntimeExtras.h",
+    "OpaqueJSString.h",
+    "WebKitAvailability.h",
+  ]
+
+}
